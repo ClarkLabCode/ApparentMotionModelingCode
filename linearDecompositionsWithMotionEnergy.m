@@ -1,4 +1,4 @@
-function linearDecompositionsWithMotionEnergy
+function linearDecompositionsWithMotionEnergy(figName)
 % linearDecompositionsWithMotionEnergy runs apparent motion stimuli over a
 % simple motion energy model, and also runs two different linear
 % decompositions of these stimuli through the model, to test for
@@ -11,6 +11,9 @@ function linearDecompositionsWithMotionEnergy
 % versions and should work with future versions. The ConfAxis utility is
 % provided in the utils/ folder and serves to prettify some of these
 % figures.
+if nargin<1
+    figName = '';
+end
 
 
 % Initialize apparent motion stimulus linear decompositions--these
@@ -38,7 +41,7 @@ stimSpaceDecomposition1(1,:) = bar1;
 stimSpaceDecomposition2(2,:) = bar2;
 % This function will compute and plot how the motion energy model responds
 % to the space decomposition in both directions
-modelMotionEnergyResponse(stimSpaceDecomposition1,stimSpaceDecomposition2,'Spatial');
+modelMotionEnergyResponse(stimSpaceDecomposition1,stimSpaceDecomposition2, [figName ' Spatial']);
 
 % DECOMPOSITION B: BY TIME
 % This is the component of the apparent motion stimulus when both bars are
@@ -50,7 +53,7 @@ stimTimeDecomposition2(1,:) = bar2;
 stimTimeDecomposition2(2,:) = bar2;
 % This function will compute and plot how the motion energy model responds
 % to the time decomposition in both directions
-modelMotionEnergyResponse(stimTimeDecomposition1,stimTimeDecomposition2,'Temporal');
+modelMotionEnergyResponse(stimTimeDecomposition1,stimTimeDecomposition2,[figName ' Temporal']);
 
 
 function modelMotionEnergyResponse(component1,component2, decompName)
